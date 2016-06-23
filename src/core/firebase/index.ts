@@ -8,8 +8,14 @@ import {
 
 export const FIREBASE_APP_PROVIDERS: any[] = [
   FIREBASE_PROVIDERS,
-  defaultFirebase('https://ng2-todo-app.firebaseio.com'),
+  defaultFirebase({
+    apiKey: 'AIzaSyCEJnR5qZnjgj8XRBUgisS8isU_7Gzvswc',
+    authDomain: 'ng2-todo-85493.firebaseapp.com',
+    databaseURL: 'https://ng2-todo-85493.firebaseio.com',
+    storageBucket: 'ng2-todo-85493.appspot.com'
+  }),
   firebaseAuthConfig({
-    method: AuthMethods.Popup
+    method: AuthMethods.Popup,
+    remember: 'default'
   })
 ];
