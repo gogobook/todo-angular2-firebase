@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router } from '@ngrx/router';
 import { AuthService } from 'src/core/auth';
 
 
@@ -39,6 +39,6 @@ export class SignIn {
   }
 
   private postSignIn(): void {
-    this.router.navigate(['/tasks']);
+    this.router.go('/tasks');
   }
 }

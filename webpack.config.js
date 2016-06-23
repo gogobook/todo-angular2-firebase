@@ -78,11 +78,13 @@ if (ENV_DEVELOPMENT || ENV_PRODUCTION) {
       '@angular/core',
       '@angular/forms',
       '@angular/platform-browser-dynamic',
-      '@angular/router',
+      '@ngrx/router',
       'angularfire2',
       'firebase',
+      'rxjs/add/operator/do',
       'rxjs/add/operator/map',
-      'rxjs/add/operator/pluck'
+      'rxjs/add/operator/pluck',
+      'rxjs/add/operator/take'
     ]
   };
 

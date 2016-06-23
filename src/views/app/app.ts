@@ -17,7 +17,7 @@ import { AppHeader } from './app-header';
       (signOut)="signOut()"></app-header>
     
     <main class="main">
-      <router-outlet></router-outlet>
+      <route-view></route-view>
     </main>
   `
 })

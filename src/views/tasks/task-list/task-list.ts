@@ -19,9 +19,9 @@ import { TaskListFilterPipe } from './task-list-filter-pipe';
   ],
   template: `
     <ul class="task-filters">
-      <li><a [class.active]="!filter" [routerLink]="['/tasks']">View All</a></li>
-      <li><a [class.active]="filter == 'active'" [routerLink]="['/tasks', {filter: 'active'}]">Active</a></li>
-      <li><a [class.active]="filter == 'completed'" [routerLink]="['/tasks', {filter: 'completed'}]">Completed</a></li>
+      <li><a [class.active]="!filter" linkTo="/tasks">View All</a></li>
+      <li><a [class.active]="filter == 'active'" linkTo="/tasks" [queryParams]="{filter: 'active'}">Active</a></li>
+      <li><a [class.active]="filter == 'completed'" linkTo="/tasks" [queryParams]="{filter: 'completed'}">Completed</a></li>
     </ul>
     
     <div class="task-list">

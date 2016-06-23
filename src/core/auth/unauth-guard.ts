@@ -1,15 +1,25 @@
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
+
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { Guard, Router, TraversalCandidate } from '@ngrx/router';
+import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth-service';
 
 
 @Injectable()
-export class UnauthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router) {}
+export class UnauthGuard implements Guard {
+  constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (!this.auth.authenticated) return true;
-    this.router.navigate(['/tasks']);
-    return false;
+  protectRoute(candidate: TraversalCandidate): Observable<boolean> {
+    return this.authService.auth$
+      .take(1)
+      .map(authState => !authState)
+      .do(unauthenticated => {
+        if (!unauthenticated && candidate.isTerminal) {
+          this.router.go('/tasks');
+        }
+      });
   }
 }

@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/pluck';
 
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { QueryParams } from '@ngrx/router';
 import { Observable } from 'rxjs/Observable';
 import { TaskService } from 'src/core/task';
 import { TaskForm } from './task-form/task-form';
@@ -22,7 +22,7 @@ import { TaskList } from './task-list/task-list';
 
       <div class="g-col">
         <task-list
-          [filter]="taskFilter | async"
+          [filter]="filter | async"
           [taskItems]="taskService.taskItems$"
           (remove)="taskService.removeTask($event)"
           (update)="taskService.updateTask($event.task, $event.changes)"></task-list>
@@ -32,9 +32,9 @@ import { TaskList } from './task-list/task-list';
 })
 
 export class Tasks {
-  taskFilter: Observable<any>;
+  filter: Observable<any>;
 
-  constructor(public route: ActivatedRoute, public taskService: TaskService) {
-    this.taskFilter = route.params.pluck('filter');
+  constructor(public params: QueryParams, public taskService: TaskService) {
+    this.filter = params.pluck('filter');
   }
 }
